@@ -6,6 +6,13 @@ from src.core.utils import resource_path
 grid_size = 40
 
 class Tile:
+    """Base class for any object in the level
+    
+    Functions:
+    show    -- render tile to the screen
+    get_pos -- get tiles position
+    """
+
     def __init__(self, pos):
         self.i, self.j = pos
         self.grid_size = grid_size
@@ -46,28 +53,25 @@ class Tile:
         return self.connection_key
 
 class Box(Tile):
-    Type = "BOX"
-
+    """Box object."""
     def add_surf(self):
         surf_url = resource_path('assets/imgs/box.png')
         self.surf = pygame.image.load(surf_url).convert_alpha()
     
 class Start(Tile):
-    Type = "START"
-
+    """Start object."""
     def add_surf(self):
         surf_url = resource_path('assets/imgs/start.png')
         self.surf = pygame.image.load(surf_url).convert_alpha()
 
-
 class End(Tile):
-    Type = "END"
-
+    """End object."""
     def add_surf(self):
         surf_url = resource_path('assets/imgs/goal.png')
         self.surf = pygame.image.load(surf_url).convert_alpha()
     
 class Button(Tile):
+    """Button object."""
     def __init__(self, pos):
         self.i, self.j = pos
         self.grid_size = grid_size
@@ -89,6 +93,7 @@ class Button(Tile):
             return True
 
 class Blockage(Tile):
+    """Blockage object."""
     def __init__(self, pos):
         self.i, self.j = pos
         self.grid_size = grid_size
@@ -109,13 +114,13 @@ class Blockage(Tile):
         self.surf = pygame.image.load(surf_url).convert_alpha()
 
 class Teleporter(Tile):
-
+    """Teleporter object."""
     def add_surf(self):
         surf_url = resource_path('assets/imgs/teleporter.png')
         self.surf = pygame.image.load(surf_url).convert_alpha()
 
 class Player(Tile):
-    Type = "PLAYER"
+    """Player object."""
     def __init__(self, pos):
         self.i, self.j = pos
         #       4

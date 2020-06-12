@@ -8,7 +8,15 @@ from src.core.tile import *
 from src.core.utils import resource_path
 
 class Editor():
+    """Class to build levels.
+
+    Functions:
+    update -- current state gets updated according to the most recent events
+    render -- render the current state and output it on the screen
+    """
+
     def __init__(self, grid_size):
+        """Initialize all variables, pygame surfaces and menus."""
         self.grid_size = grid_size
 
         background_url = resource_path('assets/imgs/asphalt.jpg')
@@ -63,9 +71,11 @@ class Editor():
         self.moved_after_place = True
 
     def store(self, value):
+        """Store the keyboard input from the user."""
         self.stored_name = value
     
     def save(self):
+        """Save a finished level."""
         if self.level.is_valid():
             self.level.save(self.stored_name)
             self.new_level = self.stored_name
@@ -75,13 +85,16 @@ class Editor():
             self.prompt.toggle()
 
     def main_menu(self):
+        """Mark the editor instance as done."""
         self.done = True
 
     def render(self, screen):
+        """Render the level in progress and output it on the screen."""
         screen.blit(self.background, (0,0))
         self.level.render(screen)
     
     def update(self, events, screen):
+        """Update the editors state depending on the events."""
         for event in events:
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:

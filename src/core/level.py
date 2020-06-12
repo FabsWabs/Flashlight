@@ -5,6 +5,16 @@ from src.core.utils import resource_path
 
 
 class Level:
+    """Contains all the information about existing levels.
+    
+    Functions:
+    render          -- render all elements in a level
+    get_objects     -- get all the objects in the current level
+    is_valid        -- check if level contains one start and one goal
+    save            -- save the level with pickle
+    load_map        -- load a level from pickle file
+    get_all_levels  -- get a list of all existing levels
+    """
     def __init__(self, name=None, level=None):
         if name is not None:
             self.load_map(name)

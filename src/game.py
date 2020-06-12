@@ -11,7 +11,15 @@ from src.core.utils import resource_path
 
 
 class Game():
+    """Class for loading and interfacing with the current level.
+
+    Functions:
+    update -- current state gets updated according to the most recent events
+    render -- render the current state and output it on the screen
+    """
+    
     def __init__(self, level, bound, sfx):
+        """Initialize all variables, pygame surfaces and menus."""
         self.level = Level(name=level)
         self.player = Player(self.level.get_start_tuple())
         background_url = resource_path('assets/imgs/asphalt.jpg')
@@ -43,9 +51,11 @@ class Game():
         self.pause_menu.toggle()
 
     def cont(self):
+        """Toggle the pause_menu."""
         self.pause_menu.toggle()
 
     def play_sound(self, path):
+        """If not already done, initialize a sound and then play it."""
         path = os.path.join('assets/sound/SFX/', path)
         path = resource_path(path)
         sound = self._sound_library.get(path)
@@ -57,9 +67,11 @@ class Game():
             sound.play()
 
     def main_menu(self):
+        """Mark the level as completed."""
         self.done = True
 
     def goal_animation(self, screen):
+        """Show the user that he has reached the goal."""
         dt = 0.3
         dif_w = 40
         dif_h = 30
@@ -101,13 +113,15 @@ class Game():
         time.sleep(2)
 
     def check_if_in_bounds(self, next_pos):
+        """Check if the position is in bounds."""
         flag = True
         next_i, next_j = next_pos
-        if not 0 < next_i < self.bound[0] or not 0 < next_j < self.bound[1]:
+        if not 0 <= next_i < self.bound[0] or not 0 <= next_j < self.bound[1]:
             flag = False
         return flag 
 
     def teleport(self, screen, loc):
+        """Teleport the player to the corresponding Teleporter."""
         self.play_sound('teleport.wav')
         transition_speed = 1.1
         alpha = 1
@@ -122,6 +136,7 @@ class Game():
             pygame.display.flip()
         
     def move(self, screen):
+        """Animate the players movement."""
         direction = self.player.get_direction()
         prog = 0
         while prog < 1:
@@ -131,6 +146,7 @@ class Game():
         self.player.move(direction)
 
     def render(self, screen, alpha=0, trans=0.0):
+        """Render the level and output it on the screen."""
         screen.blit(self.background, (0,0))
         self.level.render(screen)
         self.player.show(screen, alpha, trans)
@@ -153,6 +169,7 @@ class Game():
             screen.blit(self.letter_t, coords)
 
     def update(self, events, screen):
+        """Update the games state depending on the events."""
         for event in events:
             if event.type == KEYUP:
                 if event.key == K_RIGHT or event.key == K_DOWN or event.key == K_LEFT or event.key == K_UP:

@@ -15,10 +15,15 @@ FPS = 60
 H_SIZE = 480
 W_SIZE = 640
 
-
-
 class Runner():
+    """A Runner Instance can be used to start the game.
+
+    Functions:
+    run -- start and run the game
+    """
+
     def __init__(self):
+        """Initialize all variables needed to run the game. """
         pygame.mixer.pre_init(44100, -16, 2, 2048)
         pygame.mixer.init()
         pygame.init()
@@ -51,25 +56,26 @@ class Runner():
         self.level = Level()
         self.level_list = self.level.get_all_levels()
     
-    def placeholder(self):
-        print('placeholder')
-    
     def start_level(self, level):
+        """Set the state to 'game' and start a level."""
         self.state = 'game'
         self.game = Game(level, self.bound, self.sfx)
         self.main_menu.toggle()
         self.main_menu.full_reset()
 
     def start_editor(self):
+        """Set the state to 'edit' and open the editor."""
         self.state = 'edit'
         self.editor = Editor(self.grid_size)
         self.main_menu.toggle()
         self.main_menu.full_reset()
 
     def text_input(self, value):
+        """Save the data in the delete_menu's input field."""
         self.delete_field = value
     
     def delete(self, level):
+        """Delete a level and update the menu accordingly."""
         self.label_widget.set_background_color((255,0,0))
         if level in self.level_list:
             self.level.delete_level(level)
@@ -81,6 +87,7 @@ class Runner():
         self.change_delete_menu = True
 
     def update_delete_menu(self):
+        """Update the delete_menu."""
         self.delete_menu.remove_widget(self.delete_menu.get_widget('label'))
         self.delete_menu.remove_widget(self.delete_menu.get_widget(self.v_margin.get_id()))
         self.delete_menu.remove_widget(self.delete_menu.get_widget('back'))
@@ -92,6 +99,7 @@ class Runner():
         self.change_delete_menu = False
 
     def fill_play_menu(self, new_level=None):
+        """Remove all widgets and then fill the play_menu with existing levels."""
         initial = False
         old = False
         new = False
@@ -121,6 +129,7 @@ class Runner():
         self.play_menu.add_button('Back', pygame_menu.events.RESET, button_id='back')
 
     def change_music(self, value, music):
+        """Enable or Disable background music."""
         self.music = music
         if self.music:  
             pygame.mixer.music.play(loops=-1)
@@ -128,9 +137,11 @@ class Runner():
             pygame.mixer.music.stop()
 
     def change_sfx(self, value, sfx):
+        """Enable or Disable SFX."""
         self.sfx = sfx
 
     def run(self):
+        """Run the game."""
 
         # -------------------------------------------------------------------------
         # Create Theme:

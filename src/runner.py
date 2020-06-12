@@ -175,10 +175,11 @@ class Runner():
 
         editorhelp_menu = pygame_menu.Menu(480, 640, 'Editor Help',
                                        theme=mytheme)
-        editorhelp_menu.add_label('Left-click for placing a box')
-        editorhelp_menu.add_label('Middle-click for placing start')
-        editorhelp_menu.add_label('Right-click for placing end')
-        editorhelp_menu.add_label('Hold \'d\' for deleting objects')
+        editorhelp_menu.add_label('Left-click for placing active object')
+        editorhelp_menu.add_label('Right-click to abort placing')
+        editorhelp_menu.add_label('Press 1 - 5 to access all objects')
+        editorhelp_menu.add_label('Press \'d\' for deleting objects')
+        editorhelp_menu.add_label('Press \'ESC\' to save the level')
         editorhelp_menu.add_vertical_margin(30)
         editorhelp_menu.add_button('Back', editorhelp_menu.reset, 1)
 

@@ -2,7 +2,7 @@
 
 The project **Flashlight** is a little puzzle game written with Python using the libraries Pygame and Pygame-Menu.
 
-![Gif not Found!](https://github.com/smilefab/Flashlight/blob/master/assets/gifs/game.gif)
+![Gif not Found!](https://github.com/smilefab/Flashlight/blob/master/assets/gifs/game_small.gif)
 
 ## Contents of this document
  - [Flashlight](#Flashlight)

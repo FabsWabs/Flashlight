@@ -16,7 +16,7 @@ You find yourself in a dark room, only having a small flashlight as a light sour
 
 Also, a level editor is included, with which you can build and save your own levels.
 
-![Gif not Found!](https://github.com/smilefab/Flashlight/blob/master/assets/gifs/editor.gif)
+![Gif not Found!](https://github.com/smilefab/Flashlight/blob/master/assets/gifs/editor_small.gif)
 
 ## Installation
 The simplest way of installing is:
